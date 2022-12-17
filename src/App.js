@@ -2,6 +2,13 @@ import logo from './logo.svg';
 import './App.css';
 
 function App() {
+  const pythontest = () => {
+    PythonShell.run('./crawler/crawler.py', null, function (err) {
+      if (err) throw err;
+      console.log('finished');
+    });
+
+  }
   return (
     <div className="App">
       <header className="App-header">
