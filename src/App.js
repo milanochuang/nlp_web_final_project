@@ -1,32 +1,16 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { Route, Routes } from "react-router-dom";
+import Layout from "./containers/Layout"
+import Latest from "./components/Latest"
+import Materials from "./components/Materials"
 
-function App() {
-  const pythontest = () => {
-    PythonShell.run('./crawler/crawler.py', null, function (err) {
-      if (err) throw err;
-      console.log('finished');
-    });
-
-  }
+export default function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <Routes>
+        <Route path="/" element={<Layout />}>
+            <Route path="Latest" element={<Latest />} />
+            <Route path="Materials" element={<Materials />} />
+        </Route>
+    </Routes>
+);
 }
-
-export default App;

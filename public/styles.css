@@ -1,0 +1,7 @@
+.layout {
+    display: flex;
+    justify-content:space-around;
+    font-family:Arial black;
+    list-style-type:none;
+    margin-top:2em;
+  }
