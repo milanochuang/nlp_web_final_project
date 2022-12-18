@@ -1,7 +1,35 @@
 .layout {
-    display: flex;
-    justify-content:space-around;
-    font-family:Arial black;
-    list-style-type:none;
-    margin-top:2em;
+  display: flex;
+  justify-content:space-around;
+  font-family:Arial black;
+  list-style-type:none;
+  margin-top:2em;
   }
+
+.header {
+  font-family: Gill Sans, sans-serif;
+  font-size: xx-large;
+  text-align: center;
+  line-height: 100px;
+  color: rgba(46, 8, 171, 0.927);
+}
+
+.doc-content {
+  text-align: center;
+  background-color: rgba(210, 219, 232, 0.878);
+  border: 5px rgba(8, 73, 195, 0.866) solid;
+  margin: auto;
+  width: 65%;
+  padding: 10px;
+  height:120px;
+}
+
+.select {
+  text-align: center;
+}
+
+.button {
+  position: relative;
+  text-align: right;
+  margin-right: 443px;
+}

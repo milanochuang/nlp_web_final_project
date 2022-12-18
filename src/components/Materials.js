@@ -2,6 +2,6 @@ import React from 'react';
 
 export default function Materials() {
     return (
-        <h2>News Materials</h2>
+        <h2 className='header'>News Materials</h2>
     )
 }
