@@ -46,3 +46,8 @@
   padding-bottom: 0.5em;
   background-color:  rgba(0, 145, 255, 0.045);
 }
+
+.button-submit {
+  text-align: center;
+  padding-top: 1em;
+}

@@ -54,6 +54,9 @@ export default function Materials() {
                 <FormControlLabel control={<Checkbox />} label="推文" />
                 <FormControlLabel control={<Checkbox />} label="噓文" />
             </div>
+            <div className='button-submit'>
+                <Button variant="contained">SUBMIT</Button>
+            </div>
         </>
     )
 }
