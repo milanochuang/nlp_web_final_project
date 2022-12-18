@@ -26,6 +26,12 @@ export default function Latest() {
         <div className='select'>
             <TextField id="outlined-basic" label="content" variant="outlined" sx={{ m: 5, minWidth: 650 }} size="large" />
         </div>
+        <div className='select'>
+            <TextField id="outlined-basic" label="comment" variant="outlined" sx={{ m: 5, minWidth: 650 }} size="large" />
+        </div>
+        <div className='select'>
+            <TextField id="outlined-basic" label="link" variant="outlined" sx={{ m: 5, minWidth: 650 }} size="small" />
+        </div>
     </>
     );
 }
