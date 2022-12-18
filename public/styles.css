@@ -16,7 +16,7 @@
 
 .doc-content {
   text-align: center;
-  background-color: rgba(210, 219, 232, 0.878);
+  background-color: rgba(0, 145, 255, 0.045);
   border: 3px rgba(8, 73, 195, 0.866) solid;
   border-radius: 15px; 
   margin: auto;
@@ -33,4 +33,16 @@
   position: relative;
   text-align: right;
   margin-right: 443px;
+  padding-bottom: 2em;
+}
+
+.arg-filter {
+  display: flex;
+  margin: auto;
+  width: 50%;
+  border-radius: 15px; 
+  justify-content:space-evenly;
+  padding-top: 1em;
+  padding-bottom: 0.5em;
+  background-color:  rgba(0, 145, 255, 0.045);
 }
