@@ -4,6 +4,7 @@ import { FormControl, InputLabel, Select, MenuItem, Button, Slider, Checkbox, Fo
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 import FileDownloadIcon from '@mui/icons-material/FileDownload';
+import Table from "./Table"
 
 export default function Materials() {
     const [articleList, setArticleList] = useState([])
