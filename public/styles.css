@@ -1,28 +1,32 @@
 .layout {
   display: flex;
   justify-content:space-around;
-  font-family:Arial black;
+  font-family:"Helvetica", "Arial","LiHei Pro" rgb(34, 34, 59);
+  font-weight: bold;
   list-style-type:none;
   margin-top:2em;
   }
 
 .header {
-  font-family: Gill Sans, sans-serif;
+  font-family: "Helvetica", "Arial","LiHei Pro";
   font-size: xx-large;
   text-align: center;
   line-height: 100px;
-  color: rgba(46, 8, 171, 0.927);
+  color: rgb(74, 78, 105);
+}
+
+.subtitle {
+  color: rgb(74, 78, 105);
+  font-weight: bolder;
 }
 
 .doc-content {
   text-align: center;
-  background-color: rgba(0, 145, 255, 0.045);
-  border: 3px rgba(8, 73, 195, 0.866) solid;
+  background-color: rgba(242, 233, 228);
+  border: 5px rgba(154, 140, 152) solid;
   border-radius: 15px; 
   margin: auto;
-  width: 65%;
-  padding: 10px;
-  height:120px;
+  width: 55%;
 }
 
 .select {
@@ -44,10 +48,19 @@
   justify-content:space-evenly;
   padding-top: 1em;
   padding-bottom: 0.5em;
-  background-color:  rgba(0, 145, 255, 0.045);
+  background-color:  rgba(242, 233, 228);
 }
 
 .button-submit {
   text-align: center;
   padding-top: 1em;
+}
+
+.button-download {
+  display: flex;
+  margin: auto;
+  width: 70%;
+  justify-content:space-evenly;
+  padding-top: 2em;
+  padding-bottom: 0.5em;
 }

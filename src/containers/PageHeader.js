@@ -6,16 +6,16 @@ export default function Layout() {
         <nav>
             <ul className="layout">
                 <li>
-                    <Link to="/">Home</Link>
+                    <Link to="/">首頁</Link>
                 </li>
                 <li>
-                    <Link to="/Documentation">Documentation</Link>
+                    <Link to="/Documentation">使用說明</Link>
                 </li>
                 <li>
-                    <Link to="/Latest">Latest</Link>
+                    <Link to="/Latest">最新文章</Link>
                 </li>
                 <li>
-                    <Link to="/Materials">Materials</Link>
+                    <Link to="/Materials">新聞素材</Link>
                 </li>
             </ul>
         </nav>
