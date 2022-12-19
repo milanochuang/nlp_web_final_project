@@ -1,60 +1,70 @@
 import React from 'react';
 import { FormControl, InputLabel, Select, MenuItem, Button, TextField } from '@mui/material';
+import Accordion from '@mui/material/Accordion';
+import AccordionDetails from '@mui/material/AccordionDetails';
+import AccordionSummary from '@mui/material/AccordionSummary';
+import Typography from '@mui/material/Typography';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import axios from "axios";
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { useState, useEffect } from "react";
 
 export default function Latest() {
-    const theme = createTheme({
-        palette: {
-          primary: {
-            light: '#fcdfd8',
-            main: '#c9ada7',
-            dark: '#987e78',
-            contrastText: '#22223B',
-          },
-          secondary: {
-            light: '#cbbcc9',
-            main: '#9a8c98',
-            dark: '#6c5f6a',
-            contrastText: '#eeeeee',
-          },
-        },
-      });
+    const [expanded, setExpanded] = useState(false);
+    const [articleList, setArticleList] = useState([])
+    const [incrementNum, setIncrementNum] = useState(1)
+    const handleChange =
+      (panel) => (event, isExpanded) => {
+        setExpanded(isExpanded ? panel : false);
+      };
 
+    useEffect(()=>{
+      axios({
+        method: 'get', 
+        url: `http://127.0.0.1:5000/crawler?load=${incrementNum}`, 
+        headers: {
+          "Access-Control-Allow-Headers": "*",
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Methods": "*", 
+          'Content-Type': 'application/json'
+        }
+      }).then(response => {
+        console.log(response.data);
+        setArticleList(response.data)
+      }).catch(error => {
+        // console.error(error)
+      });
+    }, [])
+
+    const handleMoreClick = () => {
+      setIncrementNum(incrementNum+1)
+      console.log(incrementNum)
+    }
     return (
-    <>
+      <div>
         <h2 className='header'>最新文章</h2>
-        <div className='select'>
-            <ThemeProvider theme={theme}>
-                <FormControl sx={{ m: 1, minWidth: 650 }} size="small">
-                    <InputLabel id="demo-simple-select-label">請選擇一篇文章標題</InputLabel>
-                        <Select
-                            color="secondary"
-                            labelId="demo-simple-select-label"
-                            id="demo-simple-select"
-                            label="請選擇一篇文章標題"
-                        >
-                            <MenuItem value={10}>Ten</MenuItem>
-                            <MenuItem value={20}>Twenty</MenuItem>
-                            <MenuItem value={30}>Thirty</MenuItem>
-                        </Select>
-                </FormControl>
-        </ThemeProvider>
-        </div>
+        {articleList && articleList.map((v, i) => (
+          <Accordion expanded={expanded === `panel${i}`} onChange={handleChange(`panel${i}`)}>
+          <AccordionSummary
+            expandIcon={<ExpandMoreIcon />}
+            aria-controls="panel1bh-content"
+            id="panel1bh-header"
+          >
+            <Typography sx={{ width: '33%', flexShrink: 0 }}>
+              {v.article_title}
+            </Typography>
+            <Typography sx={{ color: 'text.secondary' }}>{v.author}</Typography>
+          </AccordionSummary>
+          <AccordionDetails>
+            <Typography>
+              {v.content}
+            </Typography>
+          </AccordionDetails>
+        </Accordion>
+        ))}
         <div className='button'>
-            <ThemeProvider theme={theme}>
-                <Button variant="contained" color='primary'>MORE<ArrowRightIcon /></Button>
-            </ThemeProvider>
+            <Button variant="contained" onClick={handleMoreClick}>MORE<ArrowRightIcon /></Button>
         </div>
-        <div className='select'>
-            <TextField id="outlined-basic" label="content" variant="outlined" sx={{ m: 5, minWidth: 650 }} size="large" />
-        </div>
-        <div className='select'>
-            <TextField id="outlined-basic" label="comment" variant="outlined" sx={{ m: 5, minWidth: 650 }} size="large" />
-        </div>
-        <div className='select'>
-            <TextField id="outlined-basic" label="link" variant="outlined" sx={{ m: 5, minWidth: 650 }} size="small" />
-        </div>
-    </>
+      </div>
     );
 }
