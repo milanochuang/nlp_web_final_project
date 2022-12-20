@@ -72,6 +72,7 @@ export default function Materials() {
     // 呼叫 API 回傳相似的文章標題列表
     const returnSimilarArticle = () => {
         setIsLoading(true)
+        console.log(returnArticleNum)
         console.log(returnSimilarArticleHeader)
         axios(returnSimilarArticleHeader).then(response => {
             console.log(response.data);
@@ -158,10 +159,11 @@ export default function Materials() {
                                 id="demo-simple-select"
                                 label="篇數"
                                 color="secondary"
+                                onChange={(v) => setReturnArticleNum(v.target.value)}
                             >
-                                <MenuItem value={10} onChange={(v) => setReturnArticleNum(v.target.value)}>回傳 10 篇文章</MenuItem>
-                                <MenuItem value={20} onChange={(v) => setReturnArticleNum(v.target.value)}>回傳 20 篇文章</MenuItem>
-                                <MenuItem value={30} onChange={(v) => setReturnArticleNum(v.target.value)}>回傳 30 篇文章</MenuItem>
+                                <MenuItem value={10}>回傳 10 篇文章</MenuItem>
+                                <MenuItem value={20}>回傳 20 篇文章</MenuItem>
+                                <MenuItem value={30}>回傳 30 篇文章</MenuItem>
                             </Select>
                         </ThemeProvider>
                 </FormControl>
