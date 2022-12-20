@@ -4,11 +4,13 @@ import { FormControl, InputLabel, Select, MenuItem, Button, Slider, Checkbox, Fo
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 import FileDownloadIcon from '@mui/icons-material/FileDownload';
-import Table from "./Table"
+import Table from "./Table";
+import Progress from './Progress';
 
 export default function Materials() {
     const [articleList, setArticleList] = useState([])
     const [ArticleTitle, setArticleTitle] = useState("")
+    const [isLoading, setIsLoading] = useState(false);
     const [incrementNum, setIncrementNum] = useState(1)
     const [returnArticleNum, setReturnArticleNum] = useState(0)
     const [similariyScore, setSimilarityScore] = useState(null)
@@ -66,10 +68,12 @@ export default function Materials() {
       }
     // 呼叫 API 回傳相似的文章標題列表
     const returnSimilarArticle = () => {
+        setIsLoading(true)
         console.log(returnSimilarArticleHeader)
         axios(returnSimilarArticleHeader).then(response => {
             console.log(response.data);
             setSimilarArticleList(response.data)
+            setIsLoading(false)
         })
     }
 
@@ -108,6 +112,21 @@ export default function Materials() {
         </div>
         <div className='arg-filter'>
             <div>
+                <Typography>相似度</Typography>
+                <ThemeProvider theme={theme}>
+                    <Slider
+                    color='secondary' 
+                    defaultValue={0.5} 
+                    aria-label="Default" 
+                    valueLabelDisplay="auto"
+                    min={0}
+                    max={1.0}
+                    step={0.001} 
+                    sx={{ width: 300 }}
+                    onChange={(e) => setSimilarityScore(e.target.value)}/>
+                </ThemeProvider>
+            </div>
+            <div>
                 <FormControl sx={{ m: 1, minWidth: 100 }} size="small">
                     <InputLabel id="demo-simple-select-label">篇數</InputLabel>
                         <ThemeProvider theme={theme}>
@@ -124,24 +143,8 @@ export default function Materials() {
                         </ThemeProvider>
                 </FormControl>
             </div>
-            <div>
-                <Typography>相似度</Typography>
                 <ThemeProvider theme={theme}>
-                    <Slider
-                    color='secondary' 
-                    defaultValue={0.5} 
-                    aria-label="Default" 
-                    valueLabelDisplay="auto"
-                    min={0}
-                    max={1.0}
-                    step={0.001} 
-                    sx={{ width: 300 }}
-                    onChange={(e) => setSimilarityScore(e.target.value)}/>
-                </ThemeProvider>
-            </div>
-                <ThemeProvider theme={theme}>
-                    <FormControlLabel control={<Checkbox />} color="secondary" label="推文" />
-                    <FormControlLabel control={<Checkbox />} color="secondary" label="噓文" />
+                    <FormControlLabel control={<Checkbox />} color="secondary" label="留言" />
                 </ThemeProvider>
             </div>
             <div className='button-submit'>
@@ -149,12 +152,8 @@ export default function Materials() {
                     <Button variant="contained" color='secondary' onClick={returnSimilarArticle}>SUBMIT</Button>
                 </ThemeProvider>
             </div>
-            <h2 className='header'>相關文章</h2>
-            {!articleList
-                ?"尚未回傳結果":(  
-                    <Table articleList={SimilarArticleList}/>
-                )
-            }
+            <h3 className='small-header'>相關文章</h3>
+            {isLoading ? <Progress /> : <Table articleList={SimilarArticleList} />}
             <div className='button-download'>
                 <ThemeProvider theme={theme}>
                     <Button variant="contained" color='primary'>下載 CSV<FileDownloadIcon /></Button>
