@@ -12,6 +12,7 @@ export default function Materials() {
     const [articleList, setArticleList] = useState([])
     const [ArticleTitle, setArticleTitle] = useState("")
     const [isLoading, setIsLoading] = useState(false);
+    const [loadingMoreArticle, setLoadingMoreArticle] = useState(false);
     const [incrementNum, setIncrementNum] = useState(1)
     const [returnArticleNum, setReturnArticleNum] = useState(0)
     const [similariyScore, setSimilarityScore] = useState(null)
@@ -86,6 +87,7 @@ export default function Materials() {
     const handleMoreClick = () => {
         setIncrementNum(incrementNum+1)
         console.log(incrementNum)
+        setLoadingMoreArticle(true)
         axios({
           method: 'get', 
           url: `http://127.0.0.1:5000/api/crawler?load=${incrementNum}`, 
@@ -98,6 +100,7 @@ export default function Materials() {
         }).then(response => {
           console.log(response.data);
           setArticleList(response.data)
+          setLoadingMoreArticle(false)
         }).catch(error => {
           // console.error(error)
         });
@@ -127,6 +130,7 @@ export default function Materials() {
         <div className='material-button'>
             <ThemeProvider theme={theme}>
                 <Button variant="contained" color='primary' onClick={handleMoreClick}>MORE<ArrowRightIcon /></Button>
+                {loadingMoreArticle ? <Progress /> : <handleMoreClick />}
             </ThemeProvider>
         </div>
         <div className='arg-filter'>
