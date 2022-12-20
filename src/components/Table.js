@@ -1,30 +1,41 @@
-import ArticleIcon from '@mui/icons-material/Article';
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemAvatar from '@mui/material/ListItemAvatar';
-import ListItemText from '@mui/material/ListItemText';
-import Avatar from '@mui/material/Avatar';
+import Accordion from '@mui/material/Accordion';
+import AccordionDetails from '@mui/material/AccordionDetails';
+import AccordionSummary from '@mui/material/AccordionSummary';
+import Typography from '@mui/material/Typography';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import { useState } from "react";
 
 export default function ArticleTable({
-    similarTitleList
+    articleList,
+    title
 }){
+    const [expanded, setExpanded] = useState(false);
+    const handleChange =
+      (panel) => (event, isExpanded) => {
+        setExpanded(isExpanded ? panel : false);
+      };
     return(
-        <List className='select'>         
-            {similarTitleList && similarTitleList.map((article, i) => {
-            return(
-                    <ListItem key={i}>
-                        <ListItemAvatar>
-                            <Avatar>
-                                <ArticleIcon />
-                            </Avatar>
-                        </ListItemAvatar>
-                        <ListItemText
-                            primary={article}
-                             // secondary={secondary ? 'Secondary text' : null}
-                                />
-                    </ListItem>
-                        )
-                    })}
-        </List>
+        <div>
+        <h2 className='header'>{title}</h2>
+        {articleList && articleList.map((v, i) => (
+            <Accordion expanded={expanded === `panel${i}`} onChange={handleChange(`panel${i}`)}>
+            <AccordionSummary
+              expandIcon={<ExpandMoreIcon />}
+              aria-controls="panel1bh-content"
+              id="panel1bh-header"
+            >
+              <Typography sx={{ width: '33%', flexShrink: 0 }}>
+                {v.article_title}
+              </Typography>
+              <Typography sx={{ color: 'text.secondary' }}>{v.author}</Typography>
+            </AccordionSummary>
+            <AccordionDetails>
+              <Typography>
+                {v.content}
+              </Typography>
+            </AccordionDetails>
+          </Accordion>
+          ))}
+    </div>
     )
 }

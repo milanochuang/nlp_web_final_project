@@ -24,6 +24,14 @@ def segmentation(title):
 
   return all_title
 
+def matching_article(dataLIST, clean_title):
+    similar_full_article = []
+    for i in range(len(dataLIST)):
+        for j in clean_title:
+            if dataLIST[i]['clean_article_title'] == j:
+                similar_full_article.append(dataLIST[i])
+    return similar_full_article
+
 def get_similar_article(dataLIST, new_article_title):
     titleLIST = [i['article_title'] for i in dataLIST]
     if new_article_title not in titleLIST:
@@ -87,7 +95,11 @@ def get_similarity():
             input_similarity = 0.5
         similar_articles = get_similar_article(dataLIST=dataLIST, new_article_title=new_article_title)
         similar_articles_list = [similar_article[0].replace(" ", "") for similarity, similar_article in enumerate(similar_articles) if similarity > input_similarity]
-        resultLIST = similar_articles_list[:input_filter]
+        similar_articles_list = similar_articles_list[:input_filter]
+        print(similar_articles_list)
+        for i in range(len(dataLIST)):
+            dataLIST[i]['clean_article_title'] = dataLIST[i]['article_title'].replace(" ", "")
+        resultLIST = matching_article(dataLIST, similar_articles_list)
         if resultLIST:
             return jsonify(resultLIST)
         else:
@@ -130,3 +142,8 @@ def get_crawler_data():
 if __name__ == '__main__':
     app.debug = False
     app.run(host='localhost', port=5000)
+    # for i in range(len(dataLIST)):
+        # dataLIST[i]['clean_article_title'] = dataLIST[i]['article_title'].replace(" ", "")
+    # cleanLIST = ['[問卦]中國是怎麼走到今天這樣讓美國很在意的？', '[問卦]若台灣有周休三日會是哪間公司先行', '[問卦]如果今天台積電是去中國設廠呢？', '[問卦]台鐵今天是幹嘛？', '[問卦]今天開暖氣的人多嗎？', '[問卦]柯今天在開心什麼?', '[問卦]中國跟台灣誰會先倒啊？', '[問卦]中國台灣能吃嗎？', '[問卦]今天台股穩了吧', '[問卦]怎麼今天天空是黃色的']
+    # print(matching_article(dataLIST, cleanLIST))
+    
