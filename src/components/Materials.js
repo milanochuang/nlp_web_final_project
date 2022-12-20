@@ -5,6 +5,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 import FileDownloadIcon from '@mui/icons-material/FileDownload';
 import Table from "./Table";
+import { CSVLink } from 'react-csv'
 import Progress from './Progress';
 
 export default function Materials() {
@@ -15,6 +16,7 @@ export default function Materials() {
     const [returnArticleNum, setReturnArticleNum] = useState(0)
     const [similariyScore, setSimilarityScore] = useState(null)
     const [SimilarArticleList, setSimilarArticleList] = useState([])
+    const [needMessage, setNeedMessage] = useState(false)
     const theme = createTheme({
         palette: {
           primary: {
@@ -58,7 +60,7 @@ export default function Materials() {
     // 呼叫 API 的標頭檔
     const returnSimilarArticleHeader = {
         method: 'get', 
-        url: `http://127.0.0.1:5000/api/similarity?title=${ArticleTitle}&num=${returnArticleNum}&similarity=${similariyScore}`, 
+        url: `http://127.0.0.1:5000/api/similarity?title=${ArticleTitle}&num=${returnArticleNum}&similarity=${similariyScore}&message=${needMessage}`, 
         headers: {
           "Access-Control-Allow-Headers": "*",
           "Access-Control-Allow-Origin": "*",
@@ -77,11 +79,28 @@ export default function Materials() {
         })
     }
 
+    const handleNeedMessage = () => {
+        setNeedMessage((prev) => !prev)
+    }
+
     const handleMoreClick = () => {
-        console.log(12345)
-        console.log(returnArticleNum)
         setIncrementNum(incrementNum+1)
         console.log(incrementNum)
+        axios({
+          method: 'get', 
+          url: `http://127.0.0.1:5000/api/crawler?load=${incrementNum}`, 
+          headers: {
+            "Access-Control-Allow-Headers": "*",
+            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Allow-Methods": "*", 
+            'Content-Type': 'application/json'
+          }
+        }).then(response => {
+          console.log(response.data);
+          setArticleList(response.data)
+        }).catch(error => {
+          // console.error(error)
+        });
       }
     return (
         <>
@@ -144,7 +163,7 @@ export default function Materials() {
                 </FormControl>
             </div>
                 <ThemeProvider theme={theme}>
-                    <FormControlLabel control={<Checkbox />} color="secondary" label="留言" />
+                    <FormControlLabel control={<Checkbox onChange={handleNeedMessage}/>} color="secondary" label="留言" />
                 </ThemeProvider>
             </div>
             <div className='button-submit'>
@@ -156,9 +175,21 @@ export default function Materials() {
             {isLoading ? <Progress /> : <Table articleList={SimilarArticleList} />}
             <div className='button-download'>
                 <ThemeProvider theme={theme}>
-                    <Button variant="contained" color='primary'>下載 CSV<FileDownloadIcon /></Button>
-                    <Button variant="contained" color='primary'>下載 TXT<FileDownloadIcon /></Button>
-                    <Button variant="contained" color='primary'>下載 PDF<FileDownloadIcon /></Button>
+                    <CSVLink
+                        data={SimilarArticleList}
+                        filename='similar_article.csv'>
+                        <Button variant="contained" color='primary'>下載 CSV<FileDownloadIcon /></Button>
+                    </CSVLink>
+                    <CSVLink
+                        data={SimilarArticleList}
+                        filename='similar_article.txt'>
+                        <Button variant="contained" color='primary'>下載 TXT<FileDownloadIcon /></Button>
+                    </CSVLink>
+                    <CSVLink
+                        data={SimilarArticleList}
+                        filename='similar_article.xlsx'>
+                        <Button variant="contained" color='primary'>下載 PDF<FileDownloadIcon /></Button>
+                    </CSVLink>
                 </ThemeProvider>
             </div>
         </>

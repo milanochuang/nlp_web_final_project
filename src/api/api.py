@@ -78,7 +78,7 @@ def ptt_title():
 @app.route("/api/similarity", methods=['GET'])
 def get_similarity():
     """
-    request url: http://127.0.0.1:5000/similarity?title={input_title}&filter={input_filter}&similarity={input_similarity}
+    request url: http://127.0.0.1:5000/similarity?title={input_title}&filter={input_filter}&similarity={input_similarity}&message={needMessage}
     """
     requestDICT = request.args.to_dict()
     if 'title' in requestDICT:
@@ -93,10 +93,14 @@ def get_similarity():
             input_similarity = float(input_similarity)
         else:
             input_similarity = 0.5
+        if 'message' in requestDICT:
+            if requestDICT['message'] == "true":
+                needMessage = True
+            else:
+                needMessage = False
         similar_articles = get_similar_article(dataLIST=dataLIST, new_article_title=new_article_title)
         similar_articles_list = [similar_article[0].replace(" ", "") for similarity, similar_article in enumerate(similar_articles) if similarity > input_similarity]
         similar_articles_list = similar_articles_list[:input_filter]
-        print(similar_articles_list)
         for i in range(len(dataLIST)):
             dataLIST[i]['clean_article_title'] = dataLIST[i]['article_title'].replace(" ", "")
         matchLIST = matching_article(dataLIST, similar_articles_list)
@@ -111,8 +115,9 @@ def get_similarity():
             resultDICT['author'] = i['author']
             resultDICT['article_title'] = i['clean_article_title']
             resultDICT['content'] = i['content']
-            for j in i['messages']:
-                resultDICT['message'].append(j['push_content'])
+            if needMessage:
+                for j in i['messages']:
+                    resultDICT['message'].append(j['push_content'])
             resultLIST.append(resultDICT)
         if resultLIST:
             return jsonify(resultLIST)
