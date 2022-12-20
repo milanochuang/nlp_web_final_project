@@ -12,7 +12,7 @@ export default function Materials() {
     const [incrementNum, setIncrementNum] = useState(1)
     const [returnArticleNum, setReturnArticleNum] = useState(0)
     const [similariyScore, setSimilarityScore] = useState(null)
-    const [similarTitleList, setSimilarTitleList] = useState([])
+    const [SimilarArticleList, setSimilarArticleList] = useState([])
     const theme = createTheme({
         palette: {
           primary: {
@@ -54,7 +54,7 @@ export default function Materials() {
       }
     
     // 呼叫 API 的標頭檔
-    const returnSimilarTitleHeader = {
+    const returnSimilarArticleHeader = {
         method: 'get', 
         url: `http://127.0.0.1:5000/api/similarity?title=${ArticleTitle}&num=${returnArticleNum}&similarity=${similariyScore}`, 
         headers: {
@@ -65,11 +65,11 @@ export default function Materials() {
         }
       }
     // 呼叫 API 回傳相似的文章標題列表
-    const returnSimilarTitle = () => {
-        console.log(returnSimilarTitleHeader)
-        axios(returnSimilarTitleHeader).then(response => {
+    const returnSimilarArticle = () => {
+        console.log(returnSimilarArticleHeader)
+        axios(returnSimilarArticleHeader).then(response => {
             console.log(response.data);
-            setSimilarTitleList(response.data)
+            setSimilarArticleList(response.data)
         })
     }
 
@@ -146,12 +146,12 @@ export default function Materials() {
             </div>
             <div className='button-submit'>
                 <ThemeProvider theme={theme}>
-                    <Button variant="contained" color='secondary' onClick={returnSimilarTitle}>SUBMIT</Button>
+                    <Button variant="contained" color='secondary' onClick={returnSimilarArticle}>SUBMIT</Button>
                 </ThemeProvider>
             </div>
-            {!similarTitleList
+            {!articleList
                 ?"尚未回傳結果":(
-                    <Table similarTitleList={similarTitleList} />
+                    <Table articleList={SimilarArticleList} title={"相關文章"} />
                 )
             }
             <div className='button-download'>

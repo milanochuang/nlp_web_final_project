@@ -1,24 +1,14 @@
 import React from 'react';
 import { Button } from '@mui/material';
-import Accordion from '@mui/material/Accordion';
-import AccordionDetails from '@mui/material/AccordionDetails';
-import AccordionSummary from '@mui/material/AccordionSummary';
-import Typography from '@mui/material/Typography';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import Table from './Table'
 import axios from "axios";
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 import { useState, useEffect } from "react";
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 export default function Latest() {
-    const [expanded, setExpanded] = useState(false);
     const [articleList, setArticleList] = useState([])
     const [incrementNum, setIncrementNum] = useState(1)
-    const handleChange =
-      (panel) => (event, isExpanded) => {
-        setExpanded(isExpanded ? panel : false);
-      };
-
     useEffect(()=>{
       axios({
         method: 'get', 
@@ -61,32 +51,9 @@ export default function Latest() {
 
     return (
       <div>
-        <h2 className='header'>最新文章</h2>
-        {articleList && articleList.map((v, i) => (
-          <div className='article'>
-            <Accordion expanded={expanded === `panel${i}`} onChange={handleChange(`panel${i}`)}>
-              <AccordionSummary
-                expandIcon={<ExpandMoreIcon />}
-                aria-controls="panel1bh-content"
-                id="panel1bh-header"
-              >
-                <Typography sx={{ width: '60%', flexShrink: 0 }}>
-                  {v.article_title}
-                </Typography>
-                <Typography sx={{ color: 'text.secondary' }}>{v.author}</Typography>
-              </AccordionSummary>
-              <AccordionDetails>
-                <Typography>
-                  {v.content}
-                </Typography>
-              </AccordionDetails>
-            </Accordion>
-          </div>
-        ))}
-        <div className='latest-button'>
-          <ThemeProvider theme={theme}>
-            <Button variant="contained" color='primary' onClick={handleMoreClick}>MORE<ArrowRightIcon /></Button>
-          </ThemeProvider>
+        <Table articleList={articleList} title={"最新文章"} />
+        <div className='button'>
+            <Button variant="contained" onClick={handleMoreClick}>MORE<ArrowRightIcon /></Button>
         </div>
       </div>
     );
