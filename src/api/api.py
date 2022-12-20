@@ -111,7 +111,7 @@ def get_similarity():
             resultDICT['author'] = i['author']
             resultDICT['article_title'] = i['clean_article_title']
             resultDICT['content'] = i['content']
-            for j in i['message']:
+            for j in i['messages']:
                 resultDICT['message'].append(j['push_content'])
             resultLIST.append(resultDICT)
         if resultLIST:
