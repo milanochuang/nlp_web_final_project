@@ -14,7 +14,7 @@ export default function Materials() {
     const [ArticleTitle, setArticleTitle] = useState("")
     const [isLoading, setIsLoading] = useState(false);
     const [loadingMoreArticle, setLoadingMoreArticle] = useState(false);
-    const [incrementNum, setIncrementNum] = useState(1)
+    const [incrementNum, setIncrementNum] = useState(2)
     const [returnArticleNum, setReturnArticleNum] = useState(0)
     const [similariyScore, setSimilarityScore] = useState(null)
     const [SimilarArticleList, setSimilarArticleList] = useState([])
