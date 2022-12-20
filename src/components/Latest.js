@@ -10,7 +10,7 @@ import Progress from './Progress';
 export default function Latest() {
     const [articleList, setArticleList] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
-    const [incrementNum, setIncrementNum] = useState(1);
+    const [incrementNum, setIncrementNum] = useState(2);
     useEffect(()=>{
       setIsLoading(true)
       axios({

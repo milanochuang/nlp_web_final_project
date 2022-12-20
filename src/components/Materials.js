@@ -14,7 +14,7 @@ export default function Materials() {
     const [ArticleTitle, setArticleTitle] = useState("")
     const [isLoading, setIsLoading] = useState(false);
     const [loadingMoreArticle, setLoadingMoreArticle] = useState(false);
-    const [incrementNum, setIncrementNum] = useState(2)
+    const [incrementNum, setIncrementNum] = useState(1)
     const [returnArticleNum, setReturnArticleNum] = useState(0)
     const [similariyScore, setSimilarityScore] = useState(null)
     const [SimilarArticleList, setSimilarArticleList] = useState([])
@@ -39,7 +39,7 @@ export default function Materials() {
     useEffect(()=>{
         axios({
           method: 'get', 
-          url: `http://127.0.0.1:5000/api/crawler?load=1`, 
+          url: `http://127.0.0.1:5000/api/crawler?load=${incrementNum}`, 
           headers: {
             "Access-Control-Allow-Headers": "*",
             "Access-Control-Allow-Origin": "*",
@@ -87,6 +87,7 @@ export default function Materials() {
     }
 
     const handleMoreClick = () => {
+        console.log(incrementNum)
         setIncrementNum(incrementNum+1)
         console.log(incrementNum)
         setLoadingMoreArticle(true)
@@ -130,8 +131,9 @@ export default function Materials() {
                 </ThemeProvider>
         </div>
         <div className='material-button'>
-            <ThemeProvider theme={theme}>
-                <Button variant="contained" color='primary' onClick={handleMoreClick} disabled={loadingMoreArticle}>MORE<ArrowRightIcon /></Button>
+            <ThemeProvider theme={theme}> 
+            {/*disabled={loadingMoreArticle}  */}
+                <Button variant="contained" color='primary' onClick={handleMoreClick} >MORE<ArrowRightIcon /></Button>
                 {loadingMoreArticle ? <ProgressLinear /> : <handleMoreClick />}
             </ThemeProvider>
         </div>
