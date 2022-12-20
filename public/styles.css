@@ -43,7 +43,7 @@
 .latest-button {
   position: relative;
   text-align: right;
-  margin-right: 343px;
+  margin-right: 305px;
   padding-top:2em;
   padding-bottom: 2em;
 }
@@ -81,5 +81,11 @@
 
 .table {
   margin: auto;
-  width: 30%; 
+  width: 60%; 
+}
+
+.progress {
+  display: flex;
+  margin: auto;
+  width: 2.5%;
 }

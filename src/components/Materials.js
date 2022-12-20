@@ -149,9 +149,10 @@ export default function Materials() {
                     <Button variant="contained" color='secondary' onClick={returnSimilarArticle}>SUBMIT</Button>
                 </ThemeProvider>
             </div>
+            <h2 className='header'>相關文章</h2>
             {!articleList
-                ?"尚未回傳結果":(
-                    <Table articleList={SimilarArticleList} title={"相關文章"} />
+                ?"尚未回傳結果":(  
+                    <Table articleList={SimilarArticleList}/>
                 )
             }
             <div className='button-download'>

@@ -15,8 +15,7 @@ export default function ArticleTable({
         setExpanded(isExpanded ? panel : false);
       };
     return(
-        <div>
-        <h2 className='header'>{title}</h2>
+        <div className='table'>
         {articleList && articleList.map((v, i) => (
             <Accordion expanded={expanded === `panel${i}`} onChange={handleChange(`panel${i}`)}>
             <AccordionSummary
@@ -24,7 +23,7 @@ export default function ArticleTable({
               aria-controls="panel1bh-content"
               id="panel1bh-header"
             >
-              <Typography sx={{ width: '33%', flexShrink: 0 }}>
+              <Typography sx={{ width: '60%', flexShrink: 0 }}>
                 {v.article_title}
               </Typography>
               <Typography sx={{ color: 'text.secondary' }}>{v.author}</Typography>
