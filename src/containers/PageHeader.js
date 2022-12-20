@@ -5,9 +5,9 @@ export default function Layout() {
         <>
         <nav>
             <ul className="layout">
-                <li>
+                {/* <li>
                     <Link to="/">首頁</Link>
-                </li>
+                </li> */}
                 <li>
                     <Link to="/Documentation">使用說明</Link>
                 </li>
@@ -17,10 +17,14 @@ export default function Layout() {
                 <li>
                     <Link to="/Materials">新聞素材</Link>
                 </li>
+                <li>
+                    <Link to="/Contact">聯絡我們</Link>
+                </li>
             </ul>
         </nav>
         
         <Outlet/>
         </>
+        
     )
 };

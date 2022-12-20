@@ -70,7 +70,6 @@
 .button-submit {
   text-align: center;
   padding-top: 1em;
-  padding-bottom: 3em;
 }
 
 .button-download {
@@ -79,7 +78,7 @@
   width: 70%;
   justify-content:space-evenly;
   padding-top: 2em;
-  padding-bottom: 0.5em;
+  padding-bottom: 3em;
 }
 
 .article {
@@ -97,4 +96,14 @@
   margin: auto;
   width: 2.5%;
   padding-bottom: 2em;
+}
+
+.progress-linear {
+  position: relative;
+  text-align: left;
+  margin-left: 436px;
+}
+
+.link {
+  color: #c9ada7;
 }

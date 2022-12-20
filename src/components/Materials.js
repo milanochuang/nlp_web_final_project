@@ -7,6 +7,7 @@ import FileDownloadIcon from '@mui/icons-material/FileDownload';
 import Table from "./Table";
 import { CSVLink } from 'react-csv'
 import Progress from './Progress';
+import ProgressLinear from './ProgressLinear';
 
 export default function Materials() {
     const [articleList, setArticleList] = useState([])
@@ -130,8 +131,8 @@ export default function Materials() {
         </div>
         <div className='material-button'>
             <ThemeProvider theme={theme}>
-                <Button variant="contained" color='primary' onClick={handleMoreClick}>MORE<ArrowRightIcon /></Button>
-                {loadingMoreArticle ? <Progress /> : <handleMoreClick />}
+                <Button variant="contained" color='primary' onClick={handleMoreClick} disabled={loadingMoreArticle}>MORE<ArrowRightIcon /></Button>
+                {loadingMoreArticle ? <ProgressLinear /> : <handleMoreClick />}
             </ThemeProvider>
         </div>
         <div className='arg-filter'>
@@ -182,19 +183,16 @@ export default function Materials() {
             <div className='button-download'>
                 <ThemeProvider theme={theme}>
                     <CSVLink
+                        className='link'
                         data={SimilarArticleList}
                         filename='similar_article.csv'>
-                        <Button variant="contained" color='primary'>下載 CSV<FileDownloadIcon /></Button>
+                        <Button variant="contained" color='primary' disabled={isLoading}>下載 CSV<FileDownloadIcon /></Button>
                     </CSVLink>
                     <CSVLink
+                        className='link'
                         data={SimilarArticleList}
                         filename='similar_article.txt'>
-                        <Button variant="contained" color='primary'>下載 TXT<FileDownloadIcon /></Button>
-                    </CSVLink>
-                    <CSVLink
-                        data={SimilarArticleList}
-                        filename='similar_article.xlsx'>
-                        <Button variant="contained" color='primary'>下載 PDF<FileDownloadIcon /></Button>
+                        <Button variant="contained" color='primary' disabled={isLoading}>下載 TXT<FileDownloadIcon /></Button>
                     </CSVLink>
                 </ThemeProvider>
             </div>

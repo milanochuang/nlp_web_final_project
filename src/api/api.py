@@ -107,7 +107,7 @@ def get_similarity():
             dataLIST[i]['clean_article_title'] = dataLIST[i]['article_title'].replace(" ", "")
         matchLIST = matching_article(dataLIST, similar_articles_list)
         resultLIST = []
-        print("這裡是有沒有需要留言的布林直", needMessage)
+        print("這裡是有沒有需要留言的布林值", needMessage)
         for i in matchLIST:
             resultDICT={
                 "author": str,
