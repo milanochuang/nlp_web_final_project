@@ -83,11 +83,11 @@ def get_similarity():
     requestDICT = request.args.to_dict()
     if 'title' in requestDICT:
         new_article_title = requestDICT['title']
-        if 'filter' in requestDICT:
-            input_filter = requestDICT['filter']
-            input_filter = int(input_filter)
+        if 'num' in requestDICT:
+            input_num = requestDICT['num']
+            input_num = int(input_num)
         else:
-            input_filter = 10
+            input_num = 10
         if 'similarity' in requestDICT:
             input_similarity = requestDICT['similarity']
             input_similarity = float(input_similarity)
@@ -95,27 +95,30 @@ def get_similarity():
             input_similarity = 0.5
         if 'message' in requestDICT:
             if requestDICT['message'] == "true":
+                print("I have come into the fact that needMessage is true")
                 needMessage = True
             else:
+                print("I have come into the fact that needMessage is false")
                 needMessage = False
         similar_articles = get_similar_article(dataLIST=dataLIST, new_article_title=new_article_title)
         similar_articles_list = [similar_article[0].replace(" ", "") for similarity, similar_article in enumerate(similar_articles) if similarity > input_similarity]
-        similar_articles_list = similar_articles_list[:input_filter]
+        similar_articles_list = similar_articles_list[:input_num]
         for i in range(len(dataLIST)):
             dataLIST[i]['clean_article_title'] = dataLIST[i]['article_title'].replace(" ", "")
         matchLIST = matching_article(dataLIST, similar_articles_list)
         resultLIST = []
+        print("這裡是有沒有需要留言的布林直", needMessage)
         for i in matchLIST:
             resultDICT={
                 "author": str,
                 "article_title": str,
                 "content": str,
-                "message": []
             }
             resultDICT['author'] = i['author']
             resultDICT['article_title'] = i['clean_article_title']
             resultDICT['content'] = i['content']
             if needMessage:
+                resultDICT['message'] = []
                 for j in i['messages']:
                     resultDICT['message'].append(j['push_content'])
             resultLIST.append(resultDICT)
