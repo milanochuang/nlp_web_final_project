@@ -9,22 +9,24 @@ export default function ArticleTable({
     similarTitleList
 }){
     return(
-        <List className='select'>         
-            {similarTitleList && similarTitleList.map((article, i) => {
-            return(
-                    <ListItem key={i}>
-                        <ListItemAvatar>
-                            <Avatar>
-                                <ArticleIcon />
-                            </Avatar>
-                        </ListItemAvatar>
-                        <ListItemText
-                            primary={article}
-                             // secondary={secondary ? 'Secondary text' : null}
-                                />
-                    </ListItem>
-                        )
-                    })}
-        </List>
+        <div className='table'>
+            <List>         
+                {similarTitleList && similarTitleList.map((article, i) => {
+                return(
+                        <ListItem key={i}>
+                            <ListItemAvatar>
+                                <Avatar>
+                                    <ArticleIcon />
+                                </Avatar>
+                            </ListItemAvatar>
+                            <ListItemText
+                                primary={article}
+                                // secondary={secondary ? 'Secondary text' : null}
+                                    />
+                        </ListItem>
+                            )
+                        })}
+            </List>
+        </div>
     )
 }

@@ -8,6 +8,7 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import axios from "axios";
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 import { useState, useEffect } from "react";
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 export default function Latest() {
     const [expanded, setExpanded] = useState(false);
@@ -40,30 +41,52 @@ export default function Latest() {
       setIncrementNum(incrementNum+1)
       console.log(incrementNum)
     }
+
+    const theme = createTheme({
+      palette: {
+        primary: {
+          light: '#fcdfd8',
+          main: '#c9ada7',
+          dark: '#987e78',
+          contrastText: '#22223B',
+        },
+        secondary: {
+          light: '#cbbcc9',
+          main: '#9a8c98',
+          dark: '#6c5f6a',
+          contrastText: '#eeeeee',
+        },
+      },
+    });
+
     return (
       <div>
         <h2 className='header'>最新文章</h2>
         {articleList && articleList.map((v, i) => (
-          <Accordion expanded={expanded === `panel${i}`} onChange={handleChange(`panel${i}`)}>
-          <AccordionSummary
-            expandIcon={<ExpandMoreIcon />}
-            aria-controls="panel1bh-content"
-            id="panel1bh-header"
-          >
-            <Typography sx={{ width: '33%', flexShrink: 0 }}>
-              {v.article_title}
-            </Typography>
-            <Typography sx={{ color: 'text.secondary' }}>{v.author}</Typography>
-          </AccordionSummary>
-          <AccordionDetails>
-            <Typography>
-              {v.content}
-            </Typography>
-          </AccordionDetails>
-        </Accordion>
+          <div className='article'>
+            <Accordion expanded={expanded === `panel${i}`} onChange={handleChange(`panel${i}`)}>
+              <AccordionSummary
+                expandIcon={<ExpandMoreIcon />}
+                aria-controls="panel1bh-content"
+                id="panel1bh-header"
+              >
+                <Typography sx={{ width: '60%', flexShrink: 0 }}>
+                  {v.article_title}
+                </Typography>
+                <Typography sx={{ color: 'text.secondary' }}>{v.author}</Typography>
+              </AccordionSummary>
+              <AccordionDetails>
+                <Typography>
+                  {v.content}
+                </Typography>
+              </AccordionDetails>
+            </Accordion>
+          </div>
         ))}
-        <div className='button'>
-            <Button variant="contained" onClick={handleMoreClick}>MORE<ArrowRightIcon /></Button>
+        <div className='latest-button'>
+          <ThemeProvider theme={theme}>
+            <Button variant="contained" color='primary' onClick={handleMoreClick}>MORE<ArrowRightIcon /></Button>
+          </ThemeProvider>
         </div>
       </div>
     );
