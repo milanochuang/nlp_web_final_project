@@ -101,7 +101,7 @@ export default function Materials() {
                     </FormControl><br/>
                 </ThemeProvider>
         </div>
-        <div className='button'>
+        <div className='material-button'>
             <ThemeProvider theme={theme}>
                 <Button variant="contained" color='primary' onClick={handleMoreClick}>MORE<ArrowRightIcon /></Button>
             </ThemeProvider>

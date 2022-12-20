@@ -99,7 +99,21 @@ def get_similarity():
         print(similar_articles_list)
         for i in range(len(dataLIST)):
             dataLIST[i]['clean_article_title'] = dataLIST[i]['article_title'].replace(" ", "")
-        resultLIST = matching_article(dataLIST, similar_articles_list)
+        matchLIST = matching_article(dataLIST, similar_articles_list)
+        resultLIST = []
+        for i in matchLIST:
+            resultDICT={
+                "author": str,
+                "article_title": str,
+                "content": str,
+                "message": []
+            }
+            resultDICT['author'] = i['author']
+            resultDICT['article_title'] = i['clean_article_title']
+            resultDICT['content'] = i['content']
+            for j in matchLIST['message']:
+                resultDICT['message'].append(j['push_content'])
+            resultLIST.append(resultDICT)
         if resultLIST:
             return jsonify(resultLIST)
         else:

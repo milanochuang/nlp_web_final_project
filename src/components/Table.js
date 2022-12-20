@@ -15,6 +15,7 @@ export default function ArticleTable({
         setExpanded(isExpanded ? panel : false);
       };
     return(
+<<<<<<< HEAD
         <div>
         <h2 className='header'>{title}</h2>
         {articleList && articleList.map((v, i) => (
@@ -37,5 +38,26 @@ export default function ArticleTable({
           </Accordion>
           ))}
     </div>
+=======
+        <div className='table'>
+            <List>         
+                {similarTitleList && similarTitleList.map((article, i) => {
+                return(
+                        <ListItem key={i}>
+                            <ListItemAvatar>
+                                <Avatar>
+                                    <ArticleIcon />
+                                </Avatar>
+                            </ListItemAvatar>
+                            <ListItemText
+                                primary={article}
+                                // secondary={secondary ? 'Secondary text' : null}
+                                    />
+                        </ListItem>
+                            )
+                        })}
+            </List>
+        </div>
+>>>>>>> origin
     )
 }
