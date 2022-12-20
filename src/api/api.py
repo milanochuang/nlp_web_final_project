@@ -1,5 +1,6 @@
 from flask import Flask
 from flask import jsonify, request
+from flask_cors import CORS
 import json
 import config
 from sklearn.feature_extraction.text import TfidfVectorizer
@@ -8,6 +9,7 @@ import jieba
 from PyPtt import PTT
 
 app = Flask(__name__)
+CORS(app)
 
 with open("./data/data.json") as f:
     full_json = json.load(f)
@@ -54,18 +56,18 @@ def crawl_handler(post_info):
 def welcome():
     return "Welcome to PTT API"
 
-@app.route("/ptt/all", methods=['GET'])
+@app.route("/api/ptt/all", methods=['GET'])
 def ptt_all():
     return jsonify(dataLIST)
 
-@app.route("/ptt/title", methods=['GET'])
+@app.route("/api/ptt/title", methods=['GET'])
 def ptt_title():
     titleLIST = []
     for article in dataLIST:
         titleLIST.append(article['article_title'])
     return jsonify(titleLIST)
 
-@app.route("/similarity", methods=['GET'])
+@app.route("/api/similarity", methods=['GET'])
 def get_similarity():
     """
     request url: http://127.0.0.1:5000/similarity?title={input_title}&filter={input_filter}&similarity={input_similarity}
@@ -91,7 +93,7 @@ def get_similarity():
         else:
             return 404
 
-@app.route("/crawler", methods=['GET'])
+@app.route("/api/crawler", methods=['GET'])
 def get_crawler_data():
     """
     request url: http://127.0.0.1:5000/crawler?load={load_time}

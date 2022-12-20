@@ -33,7 +33,7 @@ export default function Materials() {
     useEffect(()=>{
         axios({
           method: 'get', 
-          url: `http://127.0.0.1:5000/crawler?load=1`, 
+          url: `http://127.0.0.1:5000/api/crawler?load=1`, 
           headers: {
             "Access-Control-Allow-Headers": "*",
             "Access-Control-Allow-Origin": "*",
@@ -56,7 +56,7 @@ export default function Materials() {
     // 呼叫 API 的標頭檔
     const returnSimilarTitleHeader = {
         method: 'get', 
-        url: `http://127.0.0.1:5000/similarity?title=${ArticleTitle}&num=${returnArticleNum}&similarity=${similariyScore}`, 
+        url: `http://127.0.0.1:5000/api/similarity?title=${ArticleTitle}&num=${returnArticleNum}&similarity=${similariyScore}`, 
         headers: {
           "Access-Control-Allow-Headers": "*",
           "Access-Control-Allow-Origin": "*",

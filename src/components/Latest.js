@@ -21,7 +21,7 @@ export default function Latest() {
     useEffect(()=>{
       axios({
         method: 'get', 
-        url: `http://127.0.0.1:5000/crawler?load=${incrementNum}`, 
+        url: `http://127.0.0.1:5000/api/crawler?load=${incrementNum}`, 
         headers: {
           "Access-Control-Allow-Headers": "*",
           "Access-Control-Allow-Origin": "*",

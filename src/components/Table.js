@@ -9,7 +9,7 @@ export default function ArticleTable({
     similarTitleList
 }){
     return(
-        <List>         
+        <List className='select'>         
             {similarTitleList && similarTitleList.map((article, i) => {
             return(
                     <ListItem key={i}>
