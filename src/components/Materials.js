@@ -11,6 +11,7 @@ export default function Materials() {
     const [articleList, setArticleList] = useState([])
     const [ArticleTitle, setArticleTitle] = useState("")
     const [isLoading, setIsLoading] = useState(false);
+    const [loadingMore, setLoadingMore] = useState(false);
     const [incrementNum, setIncrementNum] = useState(1)
     const [returnArticleNum, setReturnArticleNum] = useState(0)
     const [similariyScore, setSimilarityScore] = useState(null)
@@ -53,7 +54,7 @@ export default function Materials() {
     const selectedArticleTitle = (selectedTitle) => {
         console.log(selectedTitle)
         setArticleTitle(selectedTitle.target.value)
-      }
+      };
     
     // 呼叫 API 的標頭檔
     const returnSimilarArticleHeader = {
@@ -65,7 +66,7 @@ export default function Materials() {
           "Access-Control-Allow-Methods": "*", 
           'Content-Type': 'application/json'
         }
-      }
+      };
     // 呼叫 API 回傳相似的文章標題列表
     const returnSimilarArticle = () => {
         setIsLoading(true)
@@ -75,14 +76,15 @@ export default function Materials() {
             setSimilarArticleList(response.data)
             setIsLoading(false)
         })
-    }
+    };
 
     const handleMoreClick = () => {
         console.log(12345)
         console.log(returnArticleNum)
         setIncrementNum(incrementNum+1)
         console.log(incrementNum)
-      }
+      };
+
     return (
         <>
             <h2 className='header'>新聞素材</h2>
@@ -108,6 +110,7 @@ export default function Materials() {
         <div className='material-button'>
             <ThemeProvider theme={theme}>
                 <Button variant="contained" color='primary' onClick={handleMoreClick}>MORE<ArrowRightIcon /></Button>
+                {loadingMore ? <Progress /> : <returnSimilarArticleHeader />}
             </ThemeProvider>
         </div>
         <div className='arg-filter'>
@@ -158,7 +161,7 @@ export default function Materials() {
                 <ThemeProvider theme={theme}>
                     <Button variant="contained" color='primary'>下載 CSV<FileDownloadIcon /></Button>
                     <Button variant="contained" color='primary'>下載 TXT<FileDownloadIcon /></Button>
-                    <Button variant="contained" color='primary'>下載 PDF<FileDownloadIcon /></Button>
+                    <Button variant="contained" color='primary'>下載 PDF<FileDownloadIcon /></Button>    
                 </ThemeProvider>
             </div>
         </>

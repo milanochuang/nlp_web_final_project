@@ -4511,6 +4511,11 @@ expect@^29.0.0:
     jest-message-util "^29.3.1"
     jest-util "^29.3.1"
 
+export-to-csv@^0.2.1:
+  version "0.2.1"
+  resolved "https://registry.yarnpkg.com/export-to-csv/-/export-to-csv-0.2.1.tgz#8f997156feebc1cf995096da16341aa0100cce4e"
+  integrity sha512-KTbrd3CAZ0cFceJEZr1e5uiMasabeCpXq1/5uvVxDl53o4jXJHnltasQoj2NkzrxD8hU9kdwjnMhoir/7nNx/A==
+
 express@^4.17.3:
   version "4.18.2"
   resolved "https://registry.yarnpkg.com/express/-/express-4.18.2.tgz#3fabe08296e930c796c19e3c516979386ba9fd59"
@@ -4609,6 +4614,11 @@ file-loader@^6.2.0:
   dependencies:
     loader-utils "^2.0.0"
     schema-utils "^3.0.0"
+
+file-saver@^2.0.5:
+  version "2.0.5"
+  resolved "https://registry.yarnpkg.com/file-saver/-/file-saver-2.0.5.tgz#d61cfe2ce059f414d899e9dd6d4107ee25670c38"
+  integrity sha512-P9bmyZ3h/PRG+Nzga+rbdI4OEpNDzAVyy74uVO9ATgzLK6VtAsYybF/+TOCvrc0MO793d6+42lLyZTw7/ArVzA==
 
 filelist@^1.0.1:
   version "1.0.4"
@@ -6172,6 +6182,11 @@ json-stable-stringify-without-jsonify@^1.0.1:
   resolved "https://registry.yarnpkg.com/json-stable-stringify-without-jsonify/-/json-stable-stringify-without-jsonify-1.0.1.tgz#9db7b59496ad3f3cfef30a75142d2d930ad72651"
   integrity sha512-Bdboy+l7tA3OGW6FjyFHWkP5LuByj1Tk33Ljyq0axyzdk9//JSi2u3fP1QSmd1KNwq6VOKYGlAu87CisVir6Pw==
 
+json-to-csv-export@2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/json-to-csv-export/-/json-to-csv-export-2.1.0.tgz#9d0dd47582ac4b7b75f07bea758b76a7546c63ac"
+  integrity sha512-xAkBf6f0uLqG7gtCuulqp6BtbIswYMiSTCJ2ctuh2w1W5XvQKywX4Ppkr5Tgm3JUHLgeOspli8zA9Hy494X5WA==
+
 json5@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/json5/-/json5-1.0.1.tgz#779fb0018604fa854eacbf6252180d83543e3dbe"
@@ -7654,6 +7669,11 @@ react-app-polyfill@^3.0.0:
     regenerator-runtime "^0.13.9"
     whatwg-fetch "^3.6.2"
 
+react-csv@^2.2.2:
+  version "2.2.2"
+  resolved "https://registry.yarnpkg.com/react-csv/-/react-csv-2.2.2.tgz#5bbf0d72a846412221a14880f294da9d6def9bfb"
+  integrity sha512-RG5hOcZKZFigIGE8LxIEV/OgS1vigFQT4EkaHeKgyuCbUAu9Nbd/1RYq++bJcJJ9VOqO/n9TZRADsXNDR4VEpw==
+
 react-dev-utils@^12.0.1:
   version "12.0.1"
   resolved "https://registry.yarnpkg.com/react-dev-utils/-/react-dev-utils-12.0.1.tgz#ba92edb4a1f379bd46ccd6bcd4e7bc398df33e73"
@@ -7711,6 +7731,18 @@ react-is@^18.0.0, react-is@^18.2.0:
   version "18.2.0"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-18.2.0.tgz#199431eeaaa2e09f86427efbb4f1473edb47609b"
   integrity sha512-xWGDIW6x921xtzPkhiULtthJHoJvBbF3q26fzloPCK0hsvxtPVelvftw3zjbHWSkR2km9Z+4uxbDDK/6Zw9B8w==
+
+react-json-to-csv@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/react-json-to-csv/-/react-json-to-csv-1.2.0.tgz#b19a8448843bc84faba7ed05445d89a9abecf9b4"
+  integrity sha512-4yBorgPrkRQDRpbTKDq5vXIb4+CYBorwFxbYyKddmTnFlUGQb/2EOyIrSq6Elp/ygYCVKJK2IwfhEYUaDVyCpw==
+  dependencies:
+    json-to-csv-export "2.1.0"
+
+react-json-to-excel@^1.0.4:
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/react-json-to-excel/-/react-json-to-excel-1.0.4.tgz#9216a4f20042e8b399e24d59e7e4dd2c68304499"
+  integrity sha512-nryIPIpoxzh6FqmJ5xZ6a6Xp3sJOoPtSl7o68ZtqJSUDnks3Qb4g+fvCMJHLF3xwxscoJMGex3eFeV4wQGQgbw==
 
 react-refresh@^0.11.0:
   version "0.11.0"
