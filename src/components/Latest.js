@@ -51,38 +51,9 @@ export default function Latest() {
 
     return (
       <div>
-<<<<<<< HEAD
         <Table articleList={articleList} title={"最新文章"} />
         <div className='button'>
             <Button variant="contained" onClick={handleMoreClick}>MORE<ArrowRightIcon /></Button>
-=======
-        <h2 className='header'>最新文章</h2>
-        {articleList && articleList.map((v, i) => (
-          <div className='article'>
-            <Accordion expanded={expanded === `panel${i}`} onChange={handleChange(`panel${i}`)}>
-              <AccordionSummary
-                expandIcon={<ExpandMoreIcon />}
-                aria-controls="panel1bh-content"
-                id="panel1bh-header"
-              >
-                <Typography sx={{ width: '60%', flexShrink: 0 }}>
-                  {v.article_title}
-                </Typography>
-                <Typography sx={{ color: 'text.secondary' }}>{v.author}</Typography>
-              </AccordionSummary>
-              <AccordionDetails>
-                <Typography>
-                  {v.content}
-                </Typography>
-              </AccordionDetails>
-            </Accordion>
-          </div>
-        ))}
-        <div className='latest-button'>
-          <ThemeProvider theme={theme}>
-            <Button variant="contained" color='primary' onClick={handleMoreClick}>MORE<ArrowRightIcon /></Button>
-          </ThemeProvider>
->>>>>>> origin
         </div>
       </div>
     );
