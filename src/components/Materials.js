@@ -37,6 +37,7 @@ export default function Materials() {
       });
       // Call crawler api and send the article list to the select menu
     useEffect(()=>{
+        setLoadingMoreArticle(true)
         axios({
           method: 'get', 
           url: `http://127.0.0.1:5000/api/crawler?load=${incrementNum}`, 
@@ -49,10 +50,11 @@ export default function Materials() {
         }).then(response => {
           console.log(response.data);
           setArticleList(response.data)
+          setLoadingMoreArticle(false)
         }).catch(error => {
           // console.error(error)
         });
-      }, [])
+      }, [incrementNum])
 
     const selectedArticleTitle = (selectedTitle) => {
         console.log(selectedTitle)
@@ -91,22 +93,22 @@ export default function Materials() {
         setIncrementNum(incrementNum+1)
         console.log(incrementNum)
         setLoadingMoreArticle(true)
-        axios({
-          method: 'get', 
-          url: `http://127.0.0.1:5000/api/crawler?load=${incrementNum}`, 
-          headers: {
-            "Access-Control-Allow-Headers": "*",
-            "Access-Control-Allow-Origin": "*",
-            "Access-Control-Allow-Methods": "*", 
-            'Content-Type': 'application/json'
-          }
-        }).then(response => {
-          console.log(response.data);
-          setArticleList(response.data)
-          setLoadingMoreArticle(false)
-        }).catch(error => {
-          // console.error(error)
-        });
+        // axios({
+        //   method: 'get', 
+        //   url: `http://127.0.0.1:5000/api/crawler?load=${incrementNum}`, 
+        //   headers: {
+        //     "Access-Control-Allow-Headers": "*",
+        //     "Access-Control-Allow-Origin": "*",
+        //     "Access-Control-Allow-Methods": "*", 
+        //     'Content-Type': 'application/json'
+        //   }
+        // }).then(response => {
+        //   console.log(response.data);
+        //   setArticleList(response.data)
+        //   setLoadingMoreArticle(false)
+        // }).catch(error => {
+        //   // console.error(error)
+        // }, [incrementNum]);
       }
     return (
         <>
