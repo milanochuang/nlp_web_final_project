@@ -1,0 +1,3 @@
+
+## Ignore anything inside /api that relates to backend code
+/src/api/**/**

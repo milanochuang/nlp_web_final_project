@@ -1,17 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { Button } from "@mui/material";
+import Table from "./Table";
 import ArrowRightIcon from "@mui/icons-material/ArrowRight";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-
 import axios from "utils/axios";
-import Table from "components/Table";
-import Progress from "components/Progress";
+import Progress from "./Progress";
 
 export default function Latest() {
   const [articleList, setArticleList] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [incrementNum, setIncrementNum] = useState(2);
-
   useEffect(() => {
     setIsLoading(true);
     axios
@@ -24,7 +22,7 @@ export default function Latest() {
       .catch((error) => {
         // console.error(error)
       });
-  }, [incrementNum]);
+  }, []);
 
   const handleMoreClick = () => {
     setIncrementNum(incrementNum + 1);
