@@ -107,3 +107,57 @@
 .link {
   color: #c9ada7;
 }
+
+.contact-content {
+  display: flex;
+  margin: auto;
+  width:80%;
+}
+
+.contact-left {
+width:600px;
+line-height:100px;
+padding:20px;
+background-color: rgba(154, 140, 152);
+border: 5px rgba(154, 140, 152) solid;
+border-radius: 15px;
+margin-right:10px;
+float:left;
+margin-top: 3em;
+}
+
+.contact-right {
+width:600px;
+line-height:100px;
+padding:20px;
+background-color: rgba(154, 140, 152);
+border: 5px rgba(154, 140, 152) solid;
+border-radius: 15px;
+float:left;
+margin-top: 3em;
+}
+
+.contact-name {
+  color: #eeeeee;
+  font-size: xx-large;
+  font-weight: bolder;
+  overflow: hidden;
+  padding-left: 0.5em;
+  line-height:3em;
+}
+
+.contact-text {
+  color: #eeeeee;
+  font-weight: bold;
+  overflow: hidden;
+  padding-left: 0.5em;
+  line-height:3em;
+}
+
+.profile {
+  max-width: 50%;
+  display:block;
+  margin:auto;
+  align-items: left;
+ }
+
