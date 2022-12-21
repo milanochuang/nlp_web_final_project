@@ -1,70 +1,97 @@
-# Getting Started with Create React App
+# 新聞素材應用程式
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## 檔案總覽
+```
 
-## Available Scripts
+├── api                          # 連接 PTT api
+|   ├── data
+|   |   └── data.json            # PTT 資料
+|   ├── api.py                   # 跑動以連接 api
+|   ├── config.py                # 填入自己的 PTT username 及 password
+|   └── requirements.txt         # 需求套件
+|
+├── public                       
+|   ├── index.html
+|   └── styles.css               # 應用程式的頁面設計
+|
+└──src
+    ├── components               # 應用程式中所使用的元件
+    |   ├── Dashboard.js         # 參數儀錶板部件
+    |   ├── DownloadButton.js    # 下載按鈕部件
+    |   ├── DropMenu.js          # 下拉選單部件
+    |   ├── Progress.js          # 資料加載部件
+    |   ├── ProgressLinear.js    # 資料加載部件 (線型)
+    |   ├── SelectMenu.js        # 下拉篇數選單部件
+    |   ├── SimilarityBar.js     # 相似度拉動元件
+    |   └── Table.js             # 資料呈現表格
+    |
+    ├── containers               # 應用程式頁面
+    |   ├── Contact.js           # 聯絡我們頁面
+    |   ├── Documentation.js     # 使用說明頁面
+    |   ├── Latest.js            # 最新文章頁面
+    |   ├── Materials.js         # 新聞素材頁面
+    |   └── PageHeader.js        # 頁面切換選單
+    |
+    ├── App.css
+    ├── App.js
+    ├── App.test.js
+    ├── index.css
+    ├── index.js
+    ├── reportWebVitals.js
+    ├── setupProxy.js            # 連接本地伺服器的 api 資料 (依照 api 路徑更改 proxyMiddleware 的第一個參數，本 api 設定為 '/api'
+    └── setupTests.js
+  
+```
+## 操作步驟
+### 1. 開啟虛擬環境
 
-In the project directory, you can run:
+為避免套件版本不相符，可建立虛擬環境以跑動程式。
 
-### `yarn start`
+  #### (1) 於終端機 (Mac) 或 Anaconda Prompt (Windows) 輸入以下指令：
+```
+# 建立虛擬環境
+conda create --name <自訂虛擬環境名稱> python=3
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+# 啟動終端機
+activate <虛擬環境名稱>
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+```
 
-### `yarn test`
+  #### (2) 若要離開虛擬環境，則輸入以下指令：
+```
+deactivate
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### 2. 連接 api
 
-### `yarn build`
+  #### (1) 於 data 資料夾放入自己的資料：`data.json`
+ 
+ ※ 本應用程式所使用之 PTT 資料透過以下[網路爬蟲](https://github.com/jwlin/ptt-web-crawler)取得
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+  #### (2) 新增 `config.py` 檔案，並輸入自己的 PTT username 和 password
+```
+username: <PTT username>
+password: <PTT password>
+```
+  #### (3) 進入 api 資料夾
+```
+cd api
+```
+  #### (4) 下載需求套件
+```
+pip install -r requirements.txt
+```
+  #### (5) 跑動 `api.py` 檔案
+```
+python api.py
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### 3. 載入 react 需求套件
+```
+yarn install
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### 4. 跑動 react 應用程式
+```
+yarn start
+```
