@@ -1,6 +1,6 @@
 import React from 'react';
-import profile_1 from './contact_1.png';
-import profile_2 from './contact_2.jpg';
+import profile_1 from '../components/img/contact_1.png';
+import profile_2 from '../components/img/contact_2.jpg';
 
 export default function Contact () {
     return (
