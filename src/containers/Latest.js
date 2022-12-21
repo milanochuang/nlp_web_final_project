@@ -1,11 +1,11 @@
 import React from 'react';
 import { Button } from '@mui/material';
-import Table from './Table'
+import Table from '../components/Table'
 import axios from "axios";
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 import { useState, useEffect } from "react";
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import Progress from './Progress';
+import Progress from '../components/Progress';
 
 export default function Latest() {
     const [articleList, setArticleList] = useState([]);
@@ -29,7 +29,7 @@ export default function Latest() {
       }).catch(error => {
         // console.error(error)
       });
-    }, [])
+    }, [incrementNum])
 
     const handleMoreClick = () => {
       setIncrementNum(incrementNum+1)

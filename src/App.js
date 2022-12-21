@@ -1,10 +1,10 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
 import PageHeader from "./containers/PageHeader"
-import Documentation from "./components/Documentation";
-import Latest from "./components/Latest"
-import Materials from "./components/Materials"
-import Contact from "./components/Contact";
+import Documentation from "./containers/Documentation";
+import Latest from "./containers/Latest"
+import Materials from "./containers/Materials"
+import Contact from "./containers/Contact";
 
 export default function App() {
   return (

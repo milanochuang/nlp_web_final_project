@@ -7,11 +7,10 @@ import { useState } from "react";
 
 export default function ArticleTable({
     articleList,
-    title
 }){
     const [expanded, setExpanded] = useState(false);
     const handleChange =
-      (panel) => (event, isExpanded) => {
+      (panel) => (isExpanded) => {
         setExpanded(isExpanded ? panel : false);
       };
     return(
