@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 import { Button } from "@mui/material";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import ArrowRightIcon from "@mui/icons-material/ArrowRight";
-import Table from "../components/Table";
-import Progress from "../components/Progress";
-import ProgressLinear from "../components/ProgressLinear";
-import DropMenu from "../components/DropMenu";
-import Dashboard from "../components/Dashboard";
-import DownloadButtons from "../components/DownloadButton";
+
+import axios from "utils/axios";
+import Table from "components/Table";
+import Progress from "components/Progress";
+import ProgressLinear from "components/ProgressLinear";
+import DropMenu from "components/DropMenu";
+import Dashboard from "components/Dashboard";
+import DownloadButtons from "components/DownloadButton";
 
 export default function Materials() {
   const [articleList, setArticleList] = useState([]);
@@ -39,16 +40,8 @@ export default function Materials() {
   // Call crawler api and send the article list to the select menu
   useEffect(() => {
     setLoadingMoreArticle(true);
-    axios({
-      method: "get",
-      url: `http://127.0.0.1:5000/api/crawler?load=${incrementNum}`,
-      headers: {
-        "Access-Control-Allow-Headers": "*",
-        "Access-Control-Allow-Origin": "*",
-        "Access-Control-Allow-Methods": "*",
-        "Content-Type": "application/json",
-      },
-    })
+    axios
+      .get(`/crawler?load=${incrementNum}`)
       .then((response) => {
         console.log(response.data);
         setArticleList(response.data);
@@ -59,25 +52,23 @@ export default function Materials() {
       });
   }, [incrementNum]);
 
-  // 呼叫 API 的標頭檔
-  const returnSimilarArticleHeader = {
-    method: "get",
-    url: `http://127.0.0.1:5000/api/similarity?title=${ArticleTitle}&num=${returnArticleNum}&similarity=${similariyScore}&message=${needMessage}`,
-    headers: {
-      "Access-Control-Allow-Headers": "*",
-      "Access-Control-Allow-Origin": "*",
-      "Access-Control-Allow-Methods": "*",
-      "Content-Type": "application/json",
-    },
-  };
   // 呼叫 API 回傳相似的文章標題列表
   const returnSimilarArticle = () => {
     setIsLoading(true);
-    axios(returnSimilarArticleHeader).then((response) => {
-      console.log(response.data);
-      setSimilarArticleList(response.data);
-      setIsLoading(false);
-    });
+    axios
+      .get(
+        `/similarity?${[
+          `title=${ArticleTitle}`,
+          `num=${returnArticleNum}`,
+          `similarity=${similariyScore}`,
+          `message=${needMessage}`,
+        ].join("&")}`
+      )
+      .then((response) => {
+        console.log(response.data);
+        setSimilarArticleList(response.data);
+        setIsLoading(false);
+      });
   };
 
   const handleSelectedArticleTitle = (selectedTitle) => {

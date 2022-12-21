@@ -2,6 +2,7 @@ import { Checkbox, FormControlLabel } from "@mui/material";
 import { ThemeProvider } from "@mui/material/styles";
 import SelectMenu from "./SelectMenu";
 import { Typography, Slider } from "@mui/material";
+
 export default function Dashboard({
   theme,
   handleSimilarityScore,

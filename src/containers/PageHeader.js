@@ -6,8 +6,8 @@ export default function Layout() {
       <nav>
         <ul className="layout">
           {/* <li>
-                    <Link to="/">首頁</Link>
-                </li> */}
+            <Link to="/">首頁</Link>
+          </li> */}
           <li>
             <Link to="/Documentation">使用說明</Link>
           </li>
