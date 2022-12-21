@@ -1,14 +1,14 @@
 .layout {
   display: flex;
-  justify-content:space-around;
-  font-family:"Helvetica", "Arial","LiHei Pro" rgb(34, 34, 59);
+  justify-content: space-around;
+  font-family: "Helvetica", "Arial", "LiHei Pro" rgb(34, 34, 59);
   font-weight: bold;
-  list-style-type:none;
-  margin-top:2em;
-  }
+  list-style-type: none;
+  margin-top: 2em;
+}
 
 .header {
-  font-family: "Helvetica", "Arial","LiHei Pro";
+  font-family: "Helvetica", "Arial", "LiHei Pro";
   font-size: xx-large;
   text-align: center;
   line-height: 100px;
@@ -16,7 +16,7 @@
 }
 
 .small-header {
-  font-family: "Helvetica", "Arial","LiHei Pro";
+  font-family: "Helvetica", "Arial", "LiHei Pro";
   font-size: x-large;
   text-align: center;
   line-height: 100px;
@@ -32,7 +32,7 @@
   text-align: center;
   background-color: rgba(242, 233, 228);
   border: 5px rgba(154, 140, 152) solid;
-  border-radius: 15px; 
+  border-radius: 15px;
   margin: auto;
   width: 55%;
 }
@@ -52,7 +52,7 @@
   position: relative;
   text-align: right;
   margin-right: 305px;
-  padding-top:2em;
+  padding-top: 2em;
   padding-bottom: 2em;
 }
 
@@ -60,11 +60,11 @@
   display: flex;
   margin: auto;
   width: 45%;
-  border-radius: 15px; 
-  justify-content:space-evenly;
+  border-radius: 15px;
+  justify-content: space-evenly;
   padding-top: 1em;
   padding-bottom: 1em;
-  background-color:  rgba(242, 233, 228);
+  background-color: rgba(242, 233, 228);
 }
 
 .button-submit {
@@ -76,19 +76,19 @@
   display: flex;
   margin: auto;
   width: 70%;
-  justify-content:space-evenly;
+  justify-content: space-evenly;
   padding-top: 2em;
   padding-bottom: 3em;
 }
 
 .article {
   margin: auto;
-  width: 55%; 
+  width: 55%;
 }
 
 .table {
   margin: auto;
-  width: 60%; 
+  width: 60%;
 }
 
 .progress {
@@ -111,30 +111,30 @@
 .contact-content {
   display: flex;
   margin: auto;
-  width:80%;
+  width: 80%;
 }
 
 .contact-left {
-width:600px;
-line-height:100px;
-padding:20px;
-background-color: rgba(154, 140, 152);
-border: 5px rgba(154, 140, 152) solid;
-border-radius: 15px;
-margin-right:10px;
-float:left;
-margin-top: 3em;
+  width: 600px;
+  line-height: 100px;
+  padding: 20px;
+  background-color: rgba(154, 140, 152);
+  border: 5px rgba(154, 140, 152) solid;
+  border-radius: 15px;
+  margin-right: 10px;
+  float: left;
+  margin-top: 3em;
 }
 
 .contact-right {
-width:600px;
-line-height:100px;
-padding:20px;
-background-color: rgba(154, 140, 152);
-border: 5px rgba(154, 140, 152) solid;
-border-radius: 15px;
-float:left;
-margin-top: 3em;
+  width: 600px;
+  line-height: 100px;
+  padding: 20px;
+  background-color: rgba(154, 140, 152);
+  border: 5px rgba(154, 140, 152) solid;
+  border-radius: 15px;
+  float: left;
+  margin-top: 3em;
 }
 
 .contact-name {
@@ -143,7 +143,7 @@ margin-top: 3em;
   font-weight: bolder;
   overflow: hidden;
   padding-left: 0.5em;
-  line-height:3em;
+  line-height: 3em;
 }
 
 .contact-text {
@@ -151,13 +151,12 @@ margin-top: 3em;
   font-weight: bold;
   overflow: hidden;
   padding-left: 0.5em;
-  line-height:3em;
+  line-height: 3em;
 }
 
 .profile {
   max-width: 50%;
-  display:block;
-  margin:auto;
+  display: block;
+  margin: auto;
   align-items: left;
- }
-
+}
