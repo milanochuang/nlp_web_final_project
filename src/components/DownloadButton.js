@@ -9,15 +9,15 @@ export default function DownloadButtons({
   similarArticleList,
 }) {
   return (
-                        <div className="button-download">
-                                    <ThemeProvider theme={theme}>
+    <div className="button-download">
+      <ThemeProvider theme={theme}>
         <CSVLink
-                              className="link"
+          className="link"
           data={similarArticleList}
           filename="similar_article.csv"
         >
           <Button variant="contained" color="primary" disabled={isLoading}>
-                                  下載 CSV
+            下載 CSV
             <FileDownloadIcon />
           </Button>
         </CSVLink>
