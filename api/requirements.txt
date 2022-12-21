@@ -1,0 +1,5 @@
+flask
+flask-cors
+sklearn==0.0
+pyptt==0.9.50
+jieba
