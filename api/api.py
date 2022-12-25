@@ -10,10 +10,12 @@ from PyPtt import PTT
 app = Flask(__name__)
 CORS(app)
 
+# 讀取以爬取過後的語料庫，以計算餘弦相似度
 with open("./data/data.json") as f:
     full_json = json.load(f)
     dataLIST = full_json['articles']
 
+# 斷詞
 def segmentation(title):
   all_title = []
   for i in title:
@@ -23,6 +25,7 @@ def segmentation(title):
 
   return all_title
 
+# 計算餘弦相似度後，回去語料庫找出原文
 def matching_article(dataLIST, clean_title):
     similar_full_article = []
     for i in range(len(dataLIST)):
@@ -31,7 +34,12 @@ def matching_article(dataLIST, clean_title):
                 similar_full_article.append(dataLIST[i])
     return similar_full_article
 
+# 回傳相似文章的標題
 def get_similar_article(dataLIST, new_article_title):
+    """
+    dataLIST: list -> 以 list of dictionaries 的形式餵入函式
+    new_article_title: str -> 網頁前端傳入的新標題
+    """
     titleLIST = [i['article_title'] for i in dataLIST]
     if new_article_title not in titleLIST:
         titleLIST.insert(0, new_article_title)
@@ -46,8 +54,15 @@ def get_similar_article(dataLIST, new_article_title):
         target_title = sorted(title_similarity.items(), key=lambda item: item[1], reverse=True)
     return target_title
 
+# 爬取 PTT 文本時的錯誤處理
 def crawl_handler(post_info):
-
+    """
+    post_info: ptt_bot.get_post()所得的參數
+    形式為ptt_bot.get_post(
+            board=<board name>, 
+            post_index=<index>
+            )
+    """
     if post_info.delete_status != PTT.data_type.post_delete_status.NOT_DELETED:
         if post_info.delete_status == PTT.data_type.post_delete_status.MODERATOR:
             print(f'[板主刪除][{post_info.author}]')
@@ -59,14 +74,17 @@ def crawl_handler(post_info):
 
     print(f'[{post_info.aid}][{post_info.title}]')
 
+# Welcome page of the api
 @app.route("/")
 def welcome():
     return "Welcome to PTT API"
 
+# 要求存取語料庫內的所有文章（架設網站測試用，實際網站並無使用）
 @app.route("/api/ptt/all", methods=['GET'])
 def ptt_all():
     return jsonify(dataLIST)
 
+# 要求存取語料庫內所有文章的標題（架設網站測試用，實際網站並無使用）
 @app.route("/api/ptt/title", methods=['GET'])
 def ptt_title():
     titleLIST = []
@@ -74,9 +92,11 @@ def ptt_title():
         titleLIST.append(article['article_title'])
     return jsonify(titleLIST)
 
+# 回傳所有相似的標題、推文，以及其文章內容
 @app.route("/api/similarity", methods=['GET'])
-def get_similarity():
+def get_similar_article():
     """
+    利用以下網址 request，並取得所有相似的標題、推文、以及文章內容，參數為網站傳入標題、回傳文章數量、相似度、是否需要留言
     request url: http://127.0.0.1:5000/similarity?title={input_title}&filter={input_filter}&similarity={input_similarity}&message={needMessage}
     """
     requestDICT = request.args.to_dict()
@@ -125,9 +145,11 @@ def get_similarity():
         else:
             return 404
 
+# 即時爬蟲最新的文章
 @app.route("/api/crawler", methods=['GET'])
 def get_crawler_data():
     """
+    利用以下網址 request 啟動爬蟲，並取得所有最新的八卦板文章，參數為 load_time 即載入次數，在「更多文章」（MORE）時，可以得到載入次數*10的文章數
     request url: http://127.0.0.1:5000/crawler?load={load_time}
     """
     requestDICT = request.args.to_dict()
@@ -162,8 +184,4 @@ def get_crawler_data():
 if __name__ == '__main__':
     app.debug = False
     app.run(host='localhost', port=5000)
-    # for i in range(len(dataLIST)):
-        # dataLIST[i]['clean_article_title'] = dataLIST[i]['article_title'].replace(" ", "")
-    # cleanLIST = ['[問卦]中國是怎麼走到今天這樣讓美國很在意的？', '[問卦]若台灣有周休三日會是哪間公司先行', '[問卦]如果今天台積電是去中國設廠呢？', '[問卦]台鐵今天是幹嘛？', '[問卦]今天開暖氣的人多嗎？', '[問卦]柯今天在開心什麼?', '[問卦]中國跟台灣誰會先倒啊？', '[問卦]中國台灣能吃嗎？', '[問卦]今天台股穩了吧', '[問卦]怎麼今天天空是黃色的']
-    # print(matching_article(dataLIST, cleanLIST))
     

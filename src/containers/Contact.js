@@ -2,6 +2,7 @@ import React from "react";
 import profile_1 from "assets/images/contact_1.png";
 import profile_2 from "assets/images/contact_2.jpg";
 
+// 聯絡資訊頁面
 export default function Contact() {
   return (
     <div>

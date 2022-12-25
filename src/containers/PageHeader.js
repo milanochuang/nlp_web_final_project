@@ -1,5 +1,6 @@
 import { Outlet, Link } from "react-router-dom";
 
+// 頁面標頭檔
 export default function Layout() {
   return (
     <>

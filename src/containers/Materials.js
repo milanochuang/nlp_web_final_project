@@ -11,6 +11,7 @@ import DropMenu from "components/DropMenu";
 import Dashboard from "components/Dashboard";
 import DownloadButtons from "components/DownloadButton";
 
+// 選取寫作材料之頁面，在此可決定回傳API之參數，如感興趣之文章，並操作儀表板，如相似度（bar）、回傳文章數、是否需要留言等，並加入下載按鈕。
 export default function Materials() {
   const [articleList, setArticleList] = useState([]);
   const [ArticleTitle, setArticleTitle] = useState("");
@@ -21,6 +22,8 @@ export default function Materials() {
   const [similariyScore, setSimilarityScore] = useState(null);
   const [similarArticleList, setSimilarArticleList] = useState([]);
   const [needMessage, setNeedMessage] = useState(false);
+
+  // 主題參數
   const theme = createTheme({
     palette: {
       primary: {
@@ -37,13 +40,13 @@ export default function Materials() {
       },
     },
   });
-  // Call crawler api and send the article list to the select menu
+
+  // 載入頁面時呼叫爬蟲 API 以在下拉選單中獲取最新文章列表，提供使用者選取。
   useEffect(() => {
     setLoadingMoreArticle(true);
     axios
       .get(`/crawler?load=${incrementNum}`)
       .then((response) => {
-        console.log(response.data);
         setArticleList(response.data);
         setLoadingMoreArticle(false);
       })
@@ -71,24 +74,28 @@ export default function Materials() {
       });
   };
 
+  // 將選取文章指配給 articleTitle，作為之後呼叫 API 的參數
   const handleSelectedArticleTitle = (selectedTitle) => {
     setArticleTitle(selectedTitle.target.value);
   };
 
+  // 勾取欄的狀態切換
   const handleNeedMessage = () => {
     setNeedMessage((prev) => !prev);
   };
 
+  // 載入更多文章的載入次數
   const handleMoreClick = () => {
-    console.log(incrementNum);
     setIncrementNum(incrementNum + 1);
-    console.log(incrementNum);
     setLoadingMoreArticle(true);
   };
+
+  // 指定相似度的參數設定
   const handleSimilarityScore = (similarScore) => {
-    console.log(similarScore);
     setSimilarityScore(similarScore.target.value);
   };
+
+  // 回傳文章篇數的參數設定
   const handleReturnArticleNum = (returnNum) => {
     setReturnArticleNum(returnNum.target.value);
   };

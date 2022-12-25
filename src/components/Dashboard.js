@@ -1,8 +1,10 @@
 import { Checkbox, FormControlLabel } from "@mui/material";
 import { ThemeProvider } from "@mui/material/styles";
-import SelectMenu from "./SelectMenu";
 import { Typography, Slider } from "@mui/material";
 
+import SelectMenu from "./SelectMenu";
+
+// 儀表板，包含拉bar、選取回傳文章的下拉選單、是否需要留言的勾選區塊
 export default function Dashboard({
   theme,
   handleSimilarityScore,

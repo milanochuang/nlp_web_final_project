@@ -20,6 +20,7 @@ export default function Progress() {
     },
   });
 
+  // 轉圈圈讀取
   return (
     <div className="progress">
       <ThemeProvider theme={theme}>

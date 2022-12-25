@@ -5,6 +5,7 @@ import AccordionSummary from "@mui/material/AccordionSummary";
 import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
+// 回傳文章所套用的表格
 export default function ArticleTable({ articleList }) {
   const [expanded, setExpanded] = useState(false);
   const handleChange = (panel) => (isExpanded) => {

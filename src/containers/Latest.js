@@ -7,17 +7,18 @@ import axios from "utils/axios";
 import Table from "components/Table";
 import Progress from "components/Progress";
 
+// 在頁面中選取最新文章
 export default function Latest() {
   const [articleList, setArticleList] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [incrementNum, setIncrementNum] = useState(2);
 
+  // 載入頁面時呼叫爬蟲 API 以在下拉選單中獲取最新文章列表，提供使用者選取。
   useEffect(() => {
     setIsLoading(true);
     axios
       .get(`/crawler?load=${incrementNum}`)
       .then((response) => {
-        console.log(response.data);
         setArticleList(response.data);
         setIsLoading(false);
       })
@@ -26,9 +27,9 @@ export default function Latest() {
       });
   }, [incrementNum]);
 
+  // 按下「MORE」按鈕時，回傳載入次數*10的文章數
   const handleMoreClick = () => {
     setIncrementNum(incrementNum + 1);
-    console.log(incrementNum);
     setIsLoading(true);
     axios
       .get(`/crawler?load=${incrementNum}`)

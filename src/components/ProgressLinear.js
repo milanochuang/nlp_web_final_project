@@ -21,6 +21,7 @@ export default function ProgressLinear() {
     },
   });
 
+  // 線條讀取
   return (
     <div className="progress-linear">
       <ThemeProvider theme={theme}>
