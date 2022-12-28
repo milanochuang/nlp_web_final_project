@@ -16,7 +16,7 @@ PTT 的八卦板一直是過去記者在採集新聞題材的時候很常使用�
 
 ## 方法
 
-本應用程式利用 React.js 框架所架構，而其中應用到的爬蟲、斷詞、TF-IDF 和 餘弦相似度計算功能，則為 Python 程式撰寫後，以 Flask  包裝成 API （Application Programming Interface），於應用程式中呼叫使用。應用程式的建構分為以下幾個步驟：
+本應用程式利用 React.js 框架所架構，而其中應用到的爬蟲、斷詞、TF-IDF 和餘弦相似度計算功能，則為 Python 程式撰寫後，以 Flask  包裝成 API （Application Programming Interface），於應用程式中呼叫使用。應用程式的建構分為以下幾個步驟：
 
 ### 1. 撰寫應用程式當中所需的功能
 
